@@ -38,6 +38,13 @@ pub fn generate_map(
         )
     );
 
+    // TODO: tests must be created
+    let mut previous_value = map[0].unwrap();
+    for node in map.iter_mut().skip(1) {
+        previous_value += 1;
+        *node = Some(previous_value);
+    }
+
     // TODO: added here just for the interface, must be defined
     map
 }
