@@ -1,3 +1,5 @@
+#[warn(dead_code)]
+
 extern crate rand;
 
 mod map;
