@@ -38,6 +38,13 @@ pub fn generate_map(
         )
     );
 
+    // TODO: tests must be created
+    let mut previous_value = map[0].unwrap();
+    for node in map.iter_mut().skip(1) {
+        previous_value += 1;
+        *node = Some(previous_value);
+    }
+
     // TODO: added here just for the interface, must be defined
     map
 }
@@ -52,8 +59,8 @@ mod tests {
 
         const WIDTH: usize = 10;
         const HEIGHT: usize = 10;
-        const MINIMUM: i8 = -10;
-        const MAXIMUM: i8 = 10;
+        const MINIMUM: i8 = -3;
+        const MAXIMUM: i8 = 3;
         let values = generate_map(
             WIDTH,
             HEIGHT,
@@ -64,7 +71,7 @@ mod tests {
         let first_value = values[0].unwrap();
 
         assert!(
-            first_value > -10,
+            first_value > MINIMUM,
             format!(
                 "The first node {} value is too small.",
                 first_value,
@@ -72,7 +79,7 @@ mod tests {
         );
 
         assert!(
-            first_value < 10,
+            first_value < MAXIMUM,
             format!(
                 "The first node {} value is too high.",
                 first_value,
