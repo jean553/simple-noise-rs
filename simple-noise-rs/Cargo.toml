@@ -3,5 +3,9 @@ name = "simple-noise"
 version = "0.1.0"
 authors = ["vagrant"]
 
+[lib]
+name = "simplenoise"
+crate-type = ["staticlib"]
+
 [dependencies]
 rand = "*"
