@@ -39,10 +39,10 @@ pub fn generate_map(
     for node in map.iter_mut().skip(1) {
 
         const DIFFERENCE_MINIMUM: i8 = -1;
-        const DIFFERENCE_MAXIMUM: i8 = 1;
+        const DIFFERENCE_MAXIMUM: i8 = 2;
         let difference = random_number_generator.gen_range(
             DIFFERENCE_MINIMUM,
-            DIFFERENCE_MAXIMUM,
+            DIFFERENCE_MAXIMUM, // [-1;2[
         );
 
         let mut value = previous_value + difference;
