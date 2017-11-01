@@ -8,11 +8,18 @@
 /// # Returns:
 ///
 /// Vector with the map nodes values.
+///
+/// TODO: Should return a Vec<u8>, the option is needed for the map generation.
 pub fn generate_map(
-    width: u8,
-    height: u8,
-) -> Vec<u8> {
+    width: usize,
+    height: usize,
+) -> Vec<Option<u8>> {
+
+    let map = vec![
+        None;
+        width * height
+    ];
 
     // TODO: added here just for the interface, must be defined
-    Vec::new()
+    map
 }
