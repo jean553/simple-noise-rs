@@ -1,2 +1,4 @@
+Cargo.lock
 .vagrant/
 *.swp
+simple-noise-rs/target/
