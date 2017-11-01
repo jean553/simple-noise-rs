@@ -70,7 +70,7 @@ mod tests {
         let first_value = values[0];
 
         assert!(
-            first_value > MINIMUM,
+            first_value >= MINIMUM,
             format!(
                 "The first node {} value is too small.",
                 first_value,
