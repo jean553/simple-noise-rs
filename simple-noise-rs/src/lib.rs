@@ -22,27 +22,26 @@ pub fn generate_map(
     height: usize,
     minimum: i8,
     maximum: i8,
-) -> Vec<Option<i8>> {
+) -> Vec<i8> {
 
+    const DEFAULT_NODE_VALUE: i8 = 0;
     let mut map = vec![
-        None;
+        DEFAULT_NODE_VALUE;
         width * height
     ];
 
     let mut random_number_generator = thread_rng();
 
-    map[0] = Some(
-        random_number_generator.gen_range(
-            minimum,
-            maximum,
-        )
+    map[0] = random_number_generator.gen_range(
+        minimum,
+        maximum,
     );
 
     // TODO: tests must be created
-    let mut previous_value = map[0].unwrap();
+    let mut previous_value = map[0];
     for node in map.iter_mut().skip(1) {
         previous_value += 1;
-        *node = Some(previous_value);
+        *node = previous_value;
     }
 
     // TODO: added here just for the interface, must be defined
@@ -68,7 +67,7 @@ mod tests {
             MAXIMUM,
         );
 
-        let first_value = values[0].unwrap();
+        let first_value = values[0];
 
         assert!(
             first_value > MINIMUM,
