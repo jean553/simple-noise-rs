@@ -9,10 +9,12 @@
 ///
 /// Vector with the map nodes values.
 pub fn generate_map(
-    width: u8,
-    height: u8,
+    width: usize,
+    height: usize,
 ) -> Vec<u8> {
 
+    let map = vec![0; width * height];
+
     // TODO: added here just for the interface, must be defined
-    Vec::new()
+    map
 }
