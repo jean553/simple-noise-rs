@@ -85,4 +85,42 @@ mod tests {
             )
         );
     }
+
+    #[test]
+    fn test_first_line_nodes_generation() {
+
+        const WIDTH: usize = 10;
+        const HEIGHT: usize = 10;
+        const MINIMUM: i8 = -3;
+        const MAXIMUM: i8 = 3;
+        let values = generate_map(
+            WIDTH,
+            HEIGHT,
+            MINIMUM,
+            MAXIMUM,
+        );
+
+        for (index, value) in values.iter().enumerate() {
+
+            let value = *value;
+
+            assert!(
+                value >= MINIMUM,
+                format!(
+                    "The node {} value ({}) is too small.",
+                    index,
+                    value,
+                )
+            );
+
+            assert!(
+                value < MAXIMUM,
+                format!(
+                    "The node {} value ({}) is too high.",
+                    index,
+                    value,
+                )
+            );
+        }
+    }
 }
