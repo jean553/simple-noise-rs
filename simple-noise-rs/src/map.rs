@@ -58,6 +58,5 @@ pub fn generate_map(
         previous_value = value;
     }
 
-    // TODO: added here just for the interface, must be defined
     map
 }
