@@ -37,11 +37,27 @@ pub fn generate_map(
         maximum,
     );
 
-    // TODO: tests must be created
     let mut previous_value = map[0];
     for node in map.iter_mut().skip(1) {
-        previous_value += 1;
-        *node = previous_value;
+
+        const DIFFERENCE_MINIMUM: i8 = -1;
+        const DIFFERENCE_MAXIMUM: i8 = 1;
+        let difference = random_number_generator.gen_range(
+            DIFFERENCE_MINIMUM,
+            DIFFERENCE_MAXIMUM,
+        );
+
+        let mut value = previous_value + difference;
+
+        if value < minimum {
+            value = minimum;
+        }
+        else if value > maximum {
+            value = maximum;
+        }
+
+        *node = value;
+        previous_value = value;
     }
 
     // TODO: added here just for the interface, must be defined
@@ -70,7 +86,7 @@ mod tests {
         let first_value = values[0];
 
         assert!(
-            first_value > MINIMUM,
+            first_value >= MINIMUM,
             format!(
                 "The first node {} value is too small.",
                 first_value,
@@ -84,5 +100,43 @@ mod tests {
                 first_value,
             )
         );
+    }
+
+    #[test]
+    fn test_first_line_nodes_generation() {
+
+        const WIDTH: usize = 10;
+        const HEIGHT: usize = 10;
+        const MINIMUM: i8 = -3;
+        const MAXIMUM: i8 = 3;
+        let values = generate_map(
+            WIDTH,
+            HEIGHT,
+            MINIMUM,
+            MAXIMUM,
+        );
+
+        for (index, value) in values.iter().enumerate() {
+
+            let value = *value;
+
+            assert!(
+                value >= MINIMUM,
+                format!(
+                    "The node {} value ({}) is too small.",
+                    index,
+                    value,
+                )
+            );
+
+            assert!(
+                value < MAXIMUM,
+                format!(
+                    "The node {} value ({}) is too high.",
+                    index,
+                    value,
+                )
+            );
+        }
     }
 }
