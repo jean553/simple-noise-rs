@@ -1,6 +1,9 @@
 extern crate rand;
 
-use rand::Rng;
+use rand::{
+    Rng,
+    thread_rng,
+};
 
 /// Public interface that generates a map according to the given dimensions.
 ///
