@@ -37,11 +37,27 @@ pub fn generate_map(
         maximum,
     );
 
-    // TODO: tests must be created
     let mut previous_value = map[0];
     for node in map.iter_mut().skip(1) {
-        previous_value += 1;
-        *node = previous_value;
+
+        const DIFFERENCE_MINIMUM: i8 = -1;
+        const DIFFERENCE_MAXIMUM: i8 = 1;
+        let difference = random_number_generator.gen_range(
+            DIFFERENCE_MINIMUM,
+            DIFFERENCE_MAXIMUM,
+        );
+
+        let mut value = previous_value + difference;
+
+        if value < minimum {
+            value = minimum;
+        }
+        else if value > maximum {
+            value = maximum;
+        }
+
+        *node = value;
+        previous_value = value;
     }
 
     // TODO: added here just for the interface, must be defined
