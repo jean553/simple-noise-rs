@@ -1,3 +1,7 @@
+extern crate rand;
+
+use rand::Rng;
+
 /// Public interface that generates a map according to the given dimensions.
 ///
 /// # Args:
@@ -15,15 +19,12 @@ pub fn generate_map(
     height: usize,
 ) -> Vec<Option<u8>> {
 
-    let map = vec![
+    let mut map = vec![
         None;
         width * height
     ];
 
-    let center_index = get_center_node_index(
-        width,
-        height,
-    );
+    map[0] = Some(rand::random::<u8>());
 
     // TODO: added here just for the interface, must be defined
     map
