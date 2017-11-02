@@ -36,7 +36,11 @@ pub fn generate_map(
     );
 
     let mut previous_value = map[0];
-    for node in map.iter_mut().skip(1) {
+    let mut previous_line = vec![
+        DEFAULT_NODE_VALUE;
+        width
+    ];
+    for (index, node) in map.iter_mut().skip(1).enumerate() {
 
         const DIFFERENCE_MINIMUM: i8 = -1;
         const DIFFERENCE_MAXIMUM: i8 = 2;
@@ -47,6 +51,19 @@ pub fn generate_map(
 
         let mut value = previous_value + difference;
 
+        if index >= width {
+
+            let previous_line_value = previous_line[index % width];
+
+            value = if index % width != 0 {
+                (previous_line_value + previous_value) / 2
+            } else {
+                previous_line_value
+            };
+
+            value += difference;
+        }
+
         if value < minimum {
             value = minimum;
         }
@@ -55,6 +72,10 @@ pub fn generate_map(
         }
 
         *node = value;
+
+        let previous_line_index = index % width;
+        previous_line[previous_line_index] = value;
+
         previous_value = value;
     }
 
