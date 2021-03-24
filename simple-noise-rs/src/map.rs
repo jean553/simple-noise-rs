@@ -13,8 +13,6 @@ use rand::{
 /// # Returns:
 ///
 /// Vector with the map nodes values.
-///
-/// TODO: Should return a Vec<i8>, the option is needed for the map generation.
 pub fn generate_map(
     width: usize,
     height: usize,
